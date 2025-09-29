@@ -127,7 +127,7 @@ export default function BrowsePage() {
                 {item.name || 'Unknown'}
               </h3>
               <p className="text-gray-400 text-sm truncate">
-                {item.type === 'playlist' ? 'Playlist' : 'Track'}
+                {'tracks' in item ? 'Playlist' : 'Track'}
               </p>
             </div>
           ))}
