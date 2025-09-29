@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(request: NextRequest) {
-  // Using the credentials directly
-  const SPOTIFY_CLIENT_ID = 'fe6d3691a9da40da85cfb30b98b85f3d'
-  const SPOTIFY_REDIRECT_URI = 'http://127.0.0.1:3000/callback'
+  // Using environment variables with fallbacks
+  const SPOTIFY_CLIENT_ID = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID || 'fe6d3691a9da40da85cfb30b98b85f3d'
+  const SPOTIFY_REDIRECT_URI = process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URI || 'https://huzaim-spotify.vercel.app/callback'
  
   const scopes = [
     'user-read-private',

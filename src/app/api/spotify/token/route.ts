@@ -8,10 +8,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Authorization code is required' }, { status: 400 })
     }
 
-    // Use the actual values from your .env.local file
-    const SPOTIFY_CLIENT_ID = 'fe6d3691a9da40da85cfb30b98b85f3d'
-    const SPOTIFY_CLIENT_SECRET = 'e90278d7f11c45d7b77f7e1052aa618e'
-    const SPOTIFY_REDIRECT_URI = 'http://127.0.0.1:3000/callback'
+    // Use environment variables with fallbacks
+    const SPOTIFY_CLIENT_ID = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID || 'fe6d3691a9da40da85cfb30b98b85f3d'
+    const SPOTIFY_CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET || 'e90278d7f11c45d7b77f7e1052aa618e'
+    const SPOTIFY_REDIRECT_URI = process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URI || 'https://huzaim-spotify.vercel.app/callback'
 
     // Client secret is now hardcoded, no need to check
 

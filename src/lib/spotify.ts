@@ -1,6 +1,6 @@
 // Spotify Web API Integration
-const SPOTIFY_CLIENT_ID = 'fe6d3691a9da40da85cfb30b98b85f3d'
-const SPOTIFY_REDIRECT_URI = 'http://127.0.0.1:3000/callback'
+const SPOTIFY_CLIENT_ID = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID || 'fe6d3691a9da40da85cfb30b98b85f3d'
+const SPOTIFY_REDIRECT_URI = process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URI || 'https://huzaim-spotify.vercel.app/callback'
 
 // Spotify API endpoints
 const SPOTIFY_API_BASE = 'https://api.spotify.com/v1'
