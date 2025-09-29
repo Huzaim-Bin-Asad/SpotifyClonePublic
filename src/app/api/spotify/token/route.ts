@@ -1,0 +1,53 @@
+import { NextRequest, NextResponse } from 'next/server'
+
+export async function POST(request: NextRequest) {
+  try {
+    const { code } = await request.json()
+    
+    if (!code) {
+      return NextResponse.json({ error: 'Authorization code is required' }, { status: 400 })
+    }
+
+    // Use the actual values from your .env.local file
+    const SPOTIFY_CLIENT_ID = 'fe6d3691a9da40da85cfb30b98b85f3d'
+    const SPOTIFY_CLIENT_SECRET = 'e90278d7f11c45d7b77f7e1052aa618e'
+    const SPOTIFY_REDIRECT_URI = 'http://127.0.0.1:3000/callback'
+
+    // Client secret is now hardcoded, no need to check
+
+    // Exchange authorization code for access token
+    const tokenResponse = await fetch('https://accounts.spotify.com/api/token', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({
+        grant_type: 'authorization_code',
+        code: code,
+        redirect_uri: SPOTIFY_REDIRECT_URI,
+        client_id: SPOTIFY_CLIENT_ID,
+        client_secret: SPOTIFY_CLIENT_SECRET
+      })
+    })
+
+    if (!tokenResponse.ok) {
+      const errorData = await tokenResponse.text()
+      console.error('Token exchange failed:', errorData)
+      return NextResponse.json({ error: 'Failed to exchange authorization code' }, { status: 400 })
+    }
+
+    const tokenData = await tokenResponse.json()
+    console.log('Spotify token exchange successful:', tokenData)
+    
+    // Add expiration timestamp
+    const tokenWithExpiry = {
+      ...tokenData,
+      expires_at: Date.now() + (tokenData.expires_in * 1000)
+    }
+
+    return NextResponse.json(tokenWithExpiry)
+  } catch (error) {
+    console.error('Token exchange error:', error)
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+  }
+}
