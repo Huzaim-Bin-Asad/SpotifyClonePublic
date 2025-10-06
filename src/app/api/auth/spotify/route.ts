@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(request: NextRequest) {
   // Using environment variables with fallbacks
-  const SPOTIFY_CLIENT_ID = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID || 'fe6d3691a9da40da85cfb30b98b85f3d'
-  const SPOTIFY_REDIRECT_URI = process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URI || 'https://huzaim-spotify.vercel.app/callback'
+  const SPOTIFY_CLIENT_ID = process.env.SPOTIFY_CLIENT_ID
+  const SPOTIFY_REDIRECT_URI = process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URI
  
   const scopes = [
     'user-read-private',
@@ -19,9 +19,9 @@ export async function GET(request: NextRequest) {
   ].join(' ')
 
   const params = new URLSearchParams({
-    client_id: SPOTIFY_CLIENT_ID,
+    client_id: SPOTIFY_CLIENT_ID!,
     response_type: 'code',
-    redirect_uri: SPOTIFY_REDIRECT_URI,
+    redirect_uri: SPOTIFY_REDIRECT_URI!,
     scope: scopes,
   })
 

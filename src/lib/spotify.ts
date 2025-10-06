@@ -1,6 +1,6 @@
 // Spotify Web API Integration
-const SPOTIFY_CLIENT_ID = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID || 'fe6d3691a9da40da85cfb30b98b85f3d'
-const SPOTIFY_REDIRECT_URI = process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URI || 'https://huzaim-spotify.vercel.app/callback'
+const SPOTIFY_CLIENT_ID = process.env.SPOTIFY_CLIENT_ID 
+const SPOTIFY_REDIRECT_URI = process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URI
 
 // Spotify API endpoints
 const SPOTIFY_API_BASE = 'https://api.spotify.com/v1'
@@ -23,7 +23,7 @@ export const getSpotifyAuthUrl = () => {
   const params = new URLSearchParams({
     client_id: SPOTIFY_CLIENT_ID!,
     response_type: 'code',
-    redirect_uri: SPOTIFY_REDIRECT_URI,
+    redirect_uri: SPOTIFY_REDIRECT_URI!,
     scope: scopes,
   })
 

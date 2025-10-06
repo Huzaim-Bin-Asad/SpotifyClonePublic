@@ -9,9 +9,9 @@ export async function POST(request: NextRequest) {
     }
 
     // Use environment variables with fallbacks
-    const SPOTIFY_CLIENT_ID = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID || 'fe6d3691a9da40da85cfb30b98b85f3d'
-    const SPOTIFY_CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET || 'e90278d7f11c45d7b77f7e1052aa618e'
-    const SPOTIFY_REDIRECT_URI = process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URI || 'https://huzaim-spotify.vercel.app/callback'
+    const SPOTIFY_CLIENT_ID = process.env.SPOTIFY_CLIENT_ID
+    const SPOTIFY_CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET 
+    const SPOTIFY_REDIRECT_URI = process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URI 
 
     // Client secret is now hardcoded, no need to check
 
@@ -24,9 +24,9 @@ export async function POST(request: NextRequest) {
       body: new URLSearchParams({
         grant_type: 'authorization_code',
         code: code,
-        redirect_uri: SPOTIFY_REDIRECT_URI,
-        client_id: SPOTIFY_CLIENT_ID,
-        client_secret: SPOTIFY_CLIENT_SECRET
+        redirect_uri: SPOTIFY_REDIRECT_URI!,
+        client_id: SPOTIFY_CLIENT_ID!,
+        client_secret: SPOTIFY_CLIENT_SECRET!
       })
     })
 
