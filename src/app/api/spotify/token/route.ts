@@ -24,9 +24,9 @@ export async function POST(request: NextRequest) {
       body: new URLSearchParams({
         grant_type: 'authorization_code',
         code: code,
-        redirect_uri: SPOTIFY_REDIRECT_URI!,
-        client_id: SPOTIFY_CLIENT_ID!,
-        client_secret: SPOTIFY_CLIENT_SECRET!
+        redirect_uri: SPOTIFY_REDIRECT_URI,
+        client_id: SPOTIFY_CLIENT_ID,
+        client_secret: SPOTIFY_CLIENT_SECRET
       })
     })
 
